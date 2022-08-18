@@ -8,7 +8,7 @@
 
 <%= simple_form_for [@list, @bookmark] do |f| %>
   <%= f.input :comment %>
-  <%= f.input :movie_id, collection: movie_titles %>
+  <%= f.association :movie %>
   <%= f.submit %>
 <% end %>
 

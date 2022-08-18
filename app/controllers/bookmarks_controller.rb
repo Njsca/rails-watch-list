@@ -8,6 +8,13 @@ class BookmarksController < ApplicationController
   def create
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.list = @list
+    # get the movie from the database with the ID from he params
+    movie_id = params['bookmark']['movie_id']
+    # movie = something
+    # @bookmark.movie = movie
+    movie = Movie.find(movie_id)
+    @bookmark.movie = movie
+    # binding.pry
 
     if @bookmark.save
       redirect_to list_path(@list)
