@@ -1,0 +1,13 @@
+<h1>Create a new bookmark</h1>
+
+<% movies = Movie.all %>
+<% movie_titles = [] %>
+<% movies.each do |movie| %>
+  <% movie_titles << movie.title %>
+<% end %>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment %>
+  <%= f.input :movie_id, collection: movie_titles %>
+  <%= f.submit %>
+<% end %>
