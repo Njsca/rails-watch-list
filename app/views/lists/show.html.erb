@@ -3,8 +3,12 @@
 
 <% bookmarks = @list.bookmarks %>
 <% bookmarks.each do |bookmark| %>
-<%= bookmark.movie_id %>
-<%= bookmark.comment %>
+<% movie_id = bookmark.movie_id %>
+<% movie = Movie.find(movie_id) %>
+<%= movie.title %>
+<%# http://tmdb.lewagon.com %>
+<%# <%= img src=`https://image.tmdb.org/t/p/w200#{movie.poster_url}` alt="" %>
+<em><%= bookmark.comment %></em>
 <% end %>
 
 <%= link_to "Create a bookmark for this list", new_list_bookmark_path(@list) %>
