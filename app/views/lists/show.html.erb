@@ -2,14 +2,23 @@
 <h4>Bookmarks</h4>
 
 <% bookmarks = @list.bookmarks %>
-<% bookmarks.each do |bookmark| %>
-<% movie_id = bookmark.movie_id %>
-<% movie = Movie.find(movie_id) %>
-<%= movie.title %>
-<%# http://tmdb.lewagon.com %>
-<%# <%= img src=`https://image.tmdb.org/t/p/w200#{movie.poster_url}` alt="" %>
-<em><%= bookmark.comment %></em>
-<% end %>
+<div class="row flex-row">
+  <div class="col-sm-6">
+    <% bookmarks.each do |bookmark| %>
+      <% movie_id = bookmark.movie_id %>
+      <% movie = Movie.find(movie_id) %>
+      <div class="card">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w400<%=movie.poster_url%>" alt="">
+        <div class="card-body">
+          <div class="card-title">
+            <%= movie.title %>
+          </div>
+          <p class="card-text"><i class="fa-solid fa-message"></i> <em><%= bookmark.comment %></em></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <%= link_to "Create a bookmark for this list", new_list_bookmark_path(@list) %>
 
