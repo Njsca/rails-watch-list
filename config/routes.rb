@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # post 'lists', to: 'lists#create'
 
   # bookmarks routes
-  resources :lists, only: [:index, :new, :show, :create] do
+  resources :lists, only: [:index, :new, :show, :create, :destroy] do
     resources :bookmarks, only: [:new, :create]
   end
 

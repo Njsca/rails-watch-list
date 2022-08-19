@@ -1,9 +1,9 @@
-<h1> <%= @list.name %> </h1>
-<h4>Bookmarks</h4>
+<h1>   <%= @list.name %> </h1>
+<h3>  Bookmarks</h3>
 
 <% bookmarks = @list.bookmarks %>
-<div class="row flex-row">
-  <div class="col-sm-6">
+<div class="row d-flex flex-row">
+  <%# <div class="col-sm-6 col-lg-3"> %>
     <% bookmarks.each do |bookmark| %>
       <% movie_id = bookmark.movie_id %>
       <% movie = Movie.find(movie_id) %>
@@ -15,13 +15,17 @@
           </div>
           <p class="card-text"><i class="fa-solid fa-message"></i> <em><%= bookmark.comment %></em></p>
         </div>
+          <div class="card-links"><i class="fa-solid fa-trash"></i> <%= link_to "Delete", bookmark_path(bookmark)  data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger'  %></div>
       </div>
     <% end %>
-  </div>
+  <%# </div> %>
 </div>
 
-<%= link_to "Create a bookmark for this list", new_list_bookmark_path(@list) %>
-
-<br>
-
-<%= link_to "Back to homepage", lists_path %>
+<div class="d-flex justify-content-around">
+  <button class="btn btn-secondary">
+    <i class="fa-solid fa-plus"></i> <%= link_to "Create a bookmark for this list", new_list_bookmark_path(@list) %>
+  </button>
+  <button class="btn btn-secondary">
+  <i class="fa-solid fa-rotate-left"></i> <%= link_to "Back to homepage", lists_path %>
+  </button>
+</div>

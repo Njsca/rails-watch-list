@@ -18,17 +18,6 @@ response = URI.open(url).read
 result = JSON.parse(response)
 array = result['results']
 
-# 10.times do
-#   i = 0
-#   movie = Movie.new(
-#     title: array[i]['title'],
-#     poster_url: array[i]['poster_path'],
-#     overview: array[i]['overview'],
-#     rating: array[i]['vote_average']
-#   )
-#   i += 1
-#   movie.save!
-# end
 
 array.each_with_index do |hash, _i|
   movie = Movie.new(
@@ -44,3 +33,15 @@ puts 'Done!'
 
 
 # `https://image.tmdb.org/t/p/w200#{hash['poster_path']}`,
+
+# 10.times do
+#   i = 0
+#   movie = Movie.new(
+#     title: array[i]['title'],
+#     poster_url: array[i]['poster_path'],
+#     overview: array[i]['overview'],
+#     rating: array[i]['vote_average']
+#   )
+#   i += 1
+#   movie.save!
+# end
